@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TattooBookingManager.Models
 {
     /// <summary>
-    /// Модель мастера татуировок.
+    /// Model stylisty tatuażu.
     /// </summary>
     public class Artist
     {
