@@ -1,12 +1,12 @@
 ﻿<Window x:Class="TattooBookingManager.ViewModels.EditWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TattooBookingManager.ViewModels"
-        mc:Ignorable="d"
-        Title="EditWindow" Height="450" Width="800">
+        xmlns:local="clr-namespace:TattooBookingManager.ViewModels" 
+    Title="Edit Appointment" Height="400" Width="400">
+    <Window.DataContext>
+        <local:EditViewModel />
+    </Window.DataContext>
     <Grid>
-        
+        <Button Content="Close" Click="CloseButton_Click" HorizontalAlignment="Right" Margin="5"/>
     </Grid>
 </Window>

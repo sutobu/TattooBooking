@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Data.Entity;
 using TattooBookingManager.Models;
 
 namespace TattooBookingManager.Data
@@ -10,9 +10,31 @@ namespace TattooBookingManager.Data
         public DbSet<TattooStyle> TattooStyles { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public TattooBookingContext() : base("name=TattooBookingContext")
         {
-            optionsBuilder.UseSqlite("Data Source=tattoo_booking.db");
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TattooStyle>().HasKey(ts => ts.StyleId);
+            modelBuilder.Entity<Client>().HasKey(c => c.ClientId);
+            modelBuilder.Entity<Artist>().HasKey(a => a.ArtistId);
+            modelBuilder.Entity<Appointment>().HasKey(a => a.AppointmentId);
+
+            modelBuilder.Entity<Appointment>()
+                .HasRequired(a => a.Client)
+                .WithMany(c => c.Appointments)
+                .HasForeignKey(a => a.ClientId);
+
+            modelBuilder.Entity<Appointment>()
+                .HasRequired(a => a.Artist)
+                .WithMany(a => a.Appointments)
+                .HasForeignKey(a => a.ArtistId);
+
+            modelBuilder.Entity<Appointment>()
+                .HasRequired(a => a.Style)
+                .WithMany(s => s.Appointments)
+                .HasForeignKey(a => a.StyleId);
         }
     }
 }

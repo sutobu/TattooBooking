@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace TattooBookingManager.Models
 {
-    /// <summary>
-    /// Represents an appointment for a tattoo session.
-    /// </summary>
     public class Appointment
     {
+        [Key]
         public int AppointmentId { get; set; }
         public int ClientId { get; set; }
         public Client Client { get; set; }
@@ -19,22 +17,18 @@ namespace TattooBookingManager.Models
         public int Duration { get; set; }
     }
 
-    /// <summary>
-    /// Represents a tattoo artist.
-    /// </summary>
     public class Artist
     {
+        [Key]
         public int ArtistId { get; set; }
         public string Name { get; set; }
         public string Specialization { get; set; }
         public List<Appointment> Appointments { get; set; } = new();
     }
 
-    /// <summary>
-    /// Represents a client booking a tattoo.
-    /// </summary>
     public class Client
     {
+        [Key]
         public int ClientId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -44,11 +38,9 @@ namespace TattooBookingManager.Models
         public string FullName => $"{FirstName} {LastName}";
     }
 
-    /// <summary>
-    /// Represents a tattoo style.
-    /// </summary>
     public class TattooStyle
     {
+        [Key]
         public int StyleId { get; set; }
         public string StyleName { get; set; }
         public List<Appointment> Appointments { get; set; } = new();
